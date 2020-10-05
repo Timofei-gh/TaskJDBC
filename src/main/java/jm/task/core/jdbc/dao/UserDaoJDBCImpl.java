@@ -44,7 +44,6 @@ public class UserDaoJDBCImpl implements UserDao {
         User user = new User(name, lastName, age);
         user.setName(name);
         try {
-            statement = connect.getConnection().createStatement();
             preparedStatement = connect.getConnection().prepareStatement("INSERT INTO users (name, lastName, age) VALUES (?,?,?)");
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, lastName);
@@ -58,7 +57,6 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public void removeUserById(long id) {
         try {
-            statement = connect.getConnection().createStatement();
             preparedStatement = connect.getConnection().prepareStatement("DELETE FROM users WHERE id = ?");
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
